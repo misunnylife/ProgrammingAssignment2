@@ -1,8 +1,8 @@
-## makeCacheMatrix simply stores an inversed matrix into memory simulating a "cache".
-## The function implements the following commands:
+## The makeCacheMatrix function simply stores an inversed matrix into memory simulating a "cache".
+## This function implements the following commands:
 ##     get          : returns the original matrix
-##     getinverse   : returns the inversed matrix (NULL if no inversed matrix avaailable)
-##     setinverse   : store argument matrix into "cache"              
+##     getinverse   : returns the inversed matrix (NULL if no inversed matrix available)
+##     setinverse   : store inversed matrix into "cache"              
 makeCacheMatrix <- function(x = matrix()) {
         inverse <- NULL                ## Default null cache
         set <- function(mtx) {         ## SET function implementation
@@ -24,15 +24,14 @@ makeCacheMatrix <- function(x = matrix()) {
 
 ## Inversion of a matrix can be time consuming if it is repeated multiple times.
 ## Instead of computing the inverse of a matrix every time, the cacheSolve function
-## checks the cached matrix (via makeCacheMatrix$getinverse fucntion) for previously
-## cached inverse of the same matrix. 
+## reuses previously cached matrix if one is available.
 ## When the function is called, it does 3 things:
-## 1. Check for a cached inversed matrix available. If one is available, returns
-##    the cached matrix, prints out a message, and exits.
-## 2. If cached inversed matrix is not available, compute inversed matrix.
-## 3. Stores a copy of inversed matrix in cache, returns the newly inversed matrix and exit.
+## 1. Check for the availability of previously saved inversion of the matrix. If one is available, 
+##    prints out a message, returns the cached matrix, and exits.
+## 2. If cached inversed matrix is not available, compute the inverse of the matrix.
+## 3. Stores a copy of inversed matrix in cache, returns the newly inversed matrix and exits.
 
-## *** NOTE: The function assumes the matrix is invertible. Unpredictable operation may
+## *** NOTE: The function works only if the matrix is invertible. Unpredictable operation may
 ##           result if non-invertible matrix is applied.
 cacheSolve <- function(x, ...) {
         
